@@ -1,6 +1,6 @@
 ---
 name: coordinate-initiative
-description: Lead substantial work across repositories, workers, or sessions. Use when explicitly asked to coordinate an initiative through decisions, implementation, and verified acceptance.
+description: Coordinate substantial work across repositories, workers, or sessions through decisions, implementation, and verified acceptance. Load only when the user explicitly asks to use this skill.
 disable-model-invocation: true
 ---
 
