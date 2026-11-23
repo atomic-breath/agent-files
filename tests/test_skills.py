@@ -20,6 +20,7 @@ IMPLICIT_INVOCATION = {
     "agent-files-sync": False,
     "auto-review": False,
     "actor-critic-mode": False,
+    "coordinate-initiative": False,
     "reset-cursor-vscode-macos": False,
     "deep-research": True,
 }
@@ -78,3 +79,8 @@ def test_codex_invocation_policy(name: str, allowed: bool) -> None:
     text = (SKILLS / name / "agents" / "openai.yaml").read_text(encoding="utf-8")
     match = re.search(r"allow_implicit_invocation:\s*(true|false)\s*$", text, re.MULTILINE)
     assert match is not None and (match.group(1) == "true") == allowed
+
+
+def test_coordinate_initiative_requires_explicit_invocation_in_cursor_and_claude() -> None:
+    text = (SKILLS / "coordinate-initiative" / "SKILL.md").read_text(encoding="utf-8")
+    assert frontmatter(text).get("disable-model-invocation") == "true"

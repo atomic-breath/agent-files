@@ -1,0 +1,6 @@
+interface:
+  display_name: "Coordinate Initiative"
+  short_description: "Guide complex work from decisions to verified acceptance"
+
+policy:
+  allow_implicit_invocation: false
