@@ -17,6 +17,8 @@ After `git pull`, run `./install.sh` again; `--smoke` fails while the live instr
 
 `install.sh` writes `agents/AGENTS.md` to `~/AGENTS.md` (Cursor) and links `~/.codex/AGENTS.md` (Codex) and `~/.claude/CLAUDE.md` (Claude Code and the Claude desktop Code tab) to it. It copies every skill in `skills/` to `~/.agents/skills` (Codex and Cursor) and `~/.claude/skills` (Claude Code). Tools not installed on the machine are skipped. Destinations and host behavior are recorded in `docs/spike-adapters.md`. `./install.sh --uninstall` restores the previous files.
 
+For substantial work across repos or sessions, explicitly invoke [Coordinate Initiative](skills/coordinate-initiative/SKILL.md). It guides delegation, decisions, and verified acceptance. Other harnesses can read the same Markdown directly.
+
 ## Run
 
 ```bash
