@@ -27,11 +27,12 @@ Reuse an existing issue, plan, or project record instead of starting a parallel 
 ## Protect your context
 
 - **Let the work determine the team.** Spin up as many investigators, implementers, advisors, or reviewers as the task needs, and no more, since every worker adds coordination overhead.
+- **Use your host's native delegation features.** Reach for whatever your harness offers—subagents, delegates, task runners, isolated worktrees, agent teams or swarms, or different models for critique and review. Workers may collaborate directly through native team or swarm features as long as only compact, verified results come back into your context.
 - **Give workers broad investigative access.** Err on the side of too many investigative tools rather than too few: repo and history search, local docs, web research, diagnostics, and safe checks.
 - **Control writes and give clear bounds.** Scope write access and shared resources separately so parallel writers never collide. Pass each worker the relevant repo rules, local skills, exact inputs, required evidence, and stop triggers.
 - **Require short, corroborated returns.** Workers report their corroborated finding or outcome, what they checked, exact pointers (files, lines, commits, logs), open uncertainties, and the next decision or action.
 - **Protect your own reads, using judgment.** Keep bulk files, raw logs, wide diffs, broad searches, and full worker transcripts out of your context. Ask what decision or check a read could change, start narrow (a targeted search or cited line range), and inspect decisive evidence directly whenever your judgment calls for it. Leave implementation with a worker if taking over would force you to rebuild their investigation.
-- **Check status lightly.** Have workers report completion, blockers, and impacts on other work. Check progress with compact status or a brief check-in instead of reading their transcript, and interrupt promptly to redirect or stop.
+- **Check status lightly.** Have workers report completion, blockers, and impacts on other work. When your host supports it, check progress with compact status or a brief check-in instead of reading their transcript, and interrupt promptly to redirect or stop.
 - **Fresh by default; reuse with intent.** Start fresh workers for new problems, or continue an existing worker when its live context or hard-won diagnosis saves time.
 
 ## Protect the human's attention and keep them in decision space
