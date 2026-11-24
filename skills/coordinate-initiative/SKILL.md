@@ -1,6 +1,6 @@
 ---
 name: coordinate-initiative
-description: Lead substantial work across repositories, agents, or sessions while protecting your working context and keeping consequential decisions explicit. Invoke only when explicitly requested.
+description: Lead substantial work across repositories or agents while protecting your working context and keeping consequential decisions explicit.
 disable-model-invocation: true
 license: MIT
 ---
@@ -27,29 +27,33 @@ Reuse an existing issue, plan, or project record instead of starting a parallel 
 ## Protect your context
 
 - **Let the work determine the team.** Spin up as many investigators, implementers, advisors, or reviewers as the task needs, and no more, since every worker adds coordination overhead.
-- **Give workers generous investigative tools and clear bounds.** Err on the side of broad investigative access (repo and history search, local docs, diagnostics, safe checks, and web search using public concepts only, never private code, internal names, or raw traces). Control writes, non-overlapping write scopes, and shared resources separately so parallel writers never collide. Pass each worker the relevant repo rules, local skills, exact inputs, required evidence, and stop triggers; workers should not recruit sub-workers unless asked.
+- **Give workers broad investigative access.** Err on the side of too many investigative tools rather than too few: repo and history search, local docs, web research, diagnostics, and safe checks.
+- **Control writes and give clear bounds.** Scope write access and shared resources separately so parallel writers never collide. Pass each worker the relevant repo rules, local skills, exact inputs, required evidence, and stop triggers.
 - **Require short, corroborated returns.** Workers report their corroborated finding or outcome, what they checked, exact pointers (files, lines, commits, logs), open uncertainties, and the next decision or action.
-- **Use judgment on your own reads.** Keep bulk files, raw logs, wide diffs, broad searches, and full worker transcripts out of your context. Pulling a worker's raw trail back in defeats the point of delegating. Before reading directly, ask what decision or check it could change and start narrow (a targeted search or cited line range). Still inspect decisive evidence directly whenever your judgment calls for it. Leave implementation with a worker if taking over would force you to rebuild their investigation.
+- **Protect your own reads, using judgment.** Keep bulk files, raw logs, wide diffs, broad searches, and full worker transcripts out of your context. Ask what decision or check a read could change, start narrow (a targeted search or cited line range), and inspect decisive evidence directly whenever your judgment calls for it. Leave implementation with a worker if taking over would force you to rebuild their investigation.
 - **Check status lightly.** Have workers report completion, blockers, and impacts on other work. Check progress with compact status or a brief check-in instead of reading their transcript, and interrupt promptly to redirect or stop.
-- **Fresh by default; reuse with intent.** Start fresh workers for new problems, or continue an existing worker when its live context or hard-won diagnosis actually saves time.
+- **Fresh by default; reuse with intent.** Start fresh workers for new problems, or continue an existing worker when its live context or hard-won diagnosis saves time.
 
 ## Protect the human's attention and keep them in decision space
 
-The human's attention and cognitive load are scarce. They may be juggling other work and switching back into this thread cold. Make every update and question easy to grasp in seconds without opening code or reading prior tool output.
+The human's attention and cognitive load are scarce. They may be juggling other work, switching back into this thread cold, or have skimmed the last update. Make every update and question easy to grasp in seconds without opening code or reading prior tool output.
 
-- **Orient them fast.** At kickoff, on meaningful changes, and during long quiet stretches, lead with status (**continuing**, **blocked**, or **waiting on you**), then briefly state the goal, what is done, what is active, and what is next.
-- **Bring consequential choices to them; never silently decide them.** Look up facts and handle routine details inside the agreed direction, but pause affected work for their call on user-facing behavior, shared contracts, persistent data, scope, meaningful architecture, or rollout risk (including the initial approach). Reuse explicit approvals already given, and ask when unsure whether a choice matters to them.
+- **Orient them fast.** At kickoff, on meaningful changes, and during long quiet stretches, lead with status (**continuing**, **blocked**, or **waiting on you**), then briefly state the goal, what is done, what is active, and what is next—explaining only the new detail needed right now.
+- **Bring consequential choices to them; never silently decide them.** Look up facts and handle routine details inside the agreed direction, but pause affected work for their call on user-facing behavior, shared contracts, persistent data, scope, meaningful architecture, or rollout risk (including the initial approach). A strong recommendation is not a reason to skip asking; don't re-ask decisions already explicitly settled, and ask whenever you're unsure whether a choice matters to them.
 - **Ask in decision space, not implementation detail.** Never surface after minutes of deep digging with a low-level technical question they lack context to answer. First bring them up to speed at their level, anchored to the original goal, then reframe the choice around the outcomes and practical tradeoffs they care about. Give viable options, your recommendation and why, and what their answer unlocks. Keep safe independent work moving while they decide.
 
-## Separate design critique from correctness review
+## Review and verify honestly
 
 - **Advisor (before recommending a consequential design):** Ask a fresh, read-only advisor to challenge your proposed approach while it can still change. Share the goal, constraints, and evidence access, and ask: *What can we reuse or remove? Is there a cheaper, easier, smaller, or better abstraction? What am I missing?* Ask for the strongest credible alternative and its tradeoffs.
 - **Correctness reviewer (after implementation):** For substantial or consequential changes, or whenever the human or repo requires independent review, use a fresh, read-only reviewer who neither built the change nor shaped the design. Have them verify the approved outcome against the exact integrated commits, builds, fixtures, and observed test evidence.
-- **Keep verification honest.** Never treat single-worker checks as integrated acceptance. After repeated failures, stop and separate product bugs, test bugs, and missing evidence before rerunning. If the approach or scope changes materially, reopen the affected human decision, advisor critique, and correctness review, not just the tests. If your host cannot run subagents or an independent reviewer, keep your own reads narrow and explicitly flag any review you could not run independently. Never self-approve.
+- **Keep verification honest.** Prefer the project's existing test runners and CI, reuse passing checks whose inputs have not changed, and never treat single-worker checks as integrated acceptance.
+- **Diagnose repeated failures instead of retrying blindly.** Separate product bugs, test bugs, and missing evidence, and pick a next check that distinguishes plausible causes.
+- **Keep gates honest when things shift.** If the approach or scope changes materially, reopen the affected human decision, advisor critique, and correctness review, not just the tests. If your host cannot run subagents or an independent reviewer, keep your own reads narrow and leave any required independent review open rather than approving your own work.
 
 ## Improve the workflow as it runs and wrap up cleanly
 
-- **Run a periodic workflow-improvement review.** After the first substantial milestone (if work remains), at major phase boundaries, or after costly rework, run a fresh worker to examine how the task is going (lead context load, token usage, rework, friction). It can propose small, reversible tweaks to your task instructions (you decide whether to try them, note material changes to the human, and undo them if they don't help) or draft proposed edits to this skill for the human's approval without changing installed or published skills directly.
-- **Wrap up clearly.** When finishing, report what changed, what passed (with exact commits and logs), what remains unverified, and any open review gates.
+- **Run a periodic workflow-improvement review.** After the first substantial milestone (if work remains), at major phase boundaries, or after costly rework, run a fresh worker to examine how the task is going (lead context load, token usage, rework, friction).
+- **Let the lead apply or undo tweaks.** The review worker can propose small, reversible tweaks to your task instructions—you decide whether to try them, note material changes to the human, and undo them if they don't help. For recurring issues, it can draft proposed edits to this skill for the human's approval without modifying installed or published skills directly.
+- **Wrap up clearly.** When finishing, report what changed, what passed (with exact commits and logs), what remains unverified, and any reviews that could not run independently.
 
-Read [`references/working-examples.md`](references/working-examples.md) for copyable worker briefs, before-and-after decision-space questions, bounded read examples, and an end-to-end multi-repo walkthrough.
+Read [`references/working-examples.md`](references/working-examples.md) for examples of worker briefs and returned reports, decision-space questions, bounded reads, and an end-to-end multi-repo walkthrough.

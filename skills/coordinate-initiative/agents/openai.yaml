@@ -1,6 +1,6 @@
 interface:
   display_name: "Coordinate Initiative"
-  short_description: "Guide complex work from decisions to verified acceptance"
+  short_description: "Lead complex work while protecting your context and keeping decisions with the human"
 
 policy:
   allow_implicit_invocation: false
