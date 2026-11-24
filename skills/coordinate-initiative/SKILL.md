@@ -1,57 +1,55 @@
 ---
 name: coordinate-initiative
-description: Lead substantial work across repositories, agents, or sessions while keeping your context clear and decisions explicit. Use only when explicitly requested.
+description: Lead substantial work across repositories, agents, or sessions while protecting your working context and keeping consequential decisions explicit. Invoke only when explicitly requested.
 disable-model-invocation: true
+license: MIT
 ---
 
 # Coordinate Initiative
 
-You are the lead for this initiative. Use this workflow only when the human explicitly asks for `coordinate-initiative`, including when they paste or attach this file directly.
+You are the lead for this initiative. You own coordination, integration, and acceptance.
 
-You own coordination, integration, and acceptance, while the human owns consequential decisions. Before coordinating anything, check whether the task actually needs it. If the job is small and clear, and neither the human nor the repository requires independent review, do and verify it yourself without workers or a new tracking record.
+Delegation exists to **protect your working context**. On long or multi-part work, reading every file, log, diff, and worker chat yourself crowds out the bigger picture. You lose sight of the goal, earlier decisions, and what still needs to happen. Send workers to do the heavy digging and scoped execution so you stay clear-headed enough to steer, synthesize, and decide.
 
-Larger work across multiple repositories, sessions, or workstreams is different. Opening every file, running broad searches, and reading long logs quickly fills your context until it is hard to steer. Sending workers to handle deep exploration and scoped edits keeps your context clear for the outcome, dependencies, tradeoffs, and final verification. Ask every worker for a short verified return covering their outcome, what they checked, exact pointers to files, commits, or logs, open uncertainties, and the next decision or action.
+```text
+Human ← plain updates & decision-space choices → You (Lead)
+                                                   │  bounded questions & owned work
+                                                   ▼
+                                               Workers (as many as the work needs)
+                                                   │  corroborated findings & evidence pointers
+                                                   └──────────────────→ You (Lead)
+```
 
-Reuse an existing issue, plan, or project record instead of starting a parallel tracker. Establish the agreed outcome, success criteria, repository and shared-resource ownership, dependencies, decisions needing human sign-off, and the cheapest check that could disprove your riskiest assumption.
+Before coordinating anything, check whether the job actually needs it. If the task is small, clear, and needs no independent review, do and verify it yourself without workers or extra tracking.
 
-## Delegating work and bounding your reads
+Reuse an existing issue, plan, or project record instead of starting a parallel tracker. Agree on the outcome, success criteria, dependencies, and the cheapest check that could disprove your riskiest assumption.
 
-When you need to trace a bug, audit callers, or check unfamiliar behavior, send someone else to look deeply instead of reading everything yourself.
+## Protect your context
 
-Start exploratory work with an **investigator** given one bounded question and read-only access by default. Once the direction is settled, hand a clear outcome to an **implementer** with exclusive ownership of any shared resource it needs so parallel work never collides. Give each worker the relevant repository rules, applicable local skills, tools, exact inputs, evidence needed, and stop or escalation points. Keep role briefs, applicable local skills, and tool access stable across assignments unless the work, repository rules, or a reversible task-local trial changes them, while varying the specific question, inputs, and evidence needed per assignment.
+- **Let the work determine the team.** Spin up as many investigators, implementers, advisors, or reviewers as the task needs, and no more, since every worker adds coordination overhead.
+- **Give workers generous investigative tools and clear bounds.** Err on the side of broad investigative access (repo and history search, local docs, diagnostics, safe checks, and web search using public concepts only, never private code, internal names, or raw traces). Control writes, non-overlapping write scopes, and shared resources separately so parallel writers never collide. Pass each worker the relevant repo rules, local skills, exact inputs, required evidence, and stop triggers; workers should not recruit sub-workers unless asked.
+- **Require short, corroborated returns.** Workers report their corroborated finding or outcome, what they checked, exact pointers (files, lines, commits, logs), open uncertainties, and the next decision or action.
+- **Use judgment on your own reads.** Keep bulk files, raw logs, wide diffs, broad searches, and full worker transcripts out of your context. Pulling a worker's raw trail back in defeats the point of delegating. Before reading directly, ask what decision or check it could change and start narrow (a targeted search or cited line range). Still inspect decisive evidence directly whenever your judgment calls for it. Leave implementation with a worker if taking over would force you to rebuild their investigation.
+- **Check status lightly.** Have workers report completion, blockers, and impacts on other work. Check progress with compact status or a brief check-in instead of reading their transcript, and interrupt promptly to redirect or stop.
+- **Fresh by default; reuse with intent.** Start fresh workers for new problems, or continue an existing worker when its live context or hard-won diagnosis actually saves time.
 
-Enable useful tools by default, including repository and history search, local documentation, public web search, diagnostics, and safe checks. Control write access, shared-resource ownership, side effects, and allowed data destinations separately. Read-only roles may run authorized safe checks in disposable areas while leaving repositories and shared state untouched. Frame public web queries around public concepts and keep private code, internal names, and raw traces out.
+## Protect the human's attention and keep them in decision space
 
-Apply the same care to your own reads across files, diffs, logs, searches, and worker chats. Before running a shell command or calling a native file reader, search tool, or worker transcript tool, ask which decision or check its output could change, and choose a narrow excerpt or set an output limit first instead of printing, numbering, or reading an entire file, log, or transcript. When you know the failure signal, an assertion, a request ID, or a specific event, make a targeted search your first move. For example, search a saved test log for the failing request ID with a few lines of context, or read only the cited 40 lines of a file, and broaden only if that narrow read misses what you need. Prefer a narrow follow-up or fresh verifier for more detail, and leave implementation with a worker if taking over would force you to rebuild their diagnosis.
+The human's attention and cognitive load are scarce. They may be juggling other work and switching back into this thread cold. Make every update and question easy to grasp in seconds without opening code or reading prior tool output.
 
-Have workers report material blockers, completion, and effects on other assignments. When a status check would change your next move, use a short native update or ask for their last verified fact, next step, and what they need. Interrupt promptly to redirect or stop work. If live messaging is unavailable, rely on the latest checkpoint or next agreed return point. Without subagents, use staged, bounded reads, bring in a fresh session or teammate when available, and leave any required independent review open rather than skipping it.
+- **Orient them fast.** At kickoff, on meaningful changes, and during long quiet stretches, lead with status (**continuing**, **blocked**, or **waiting on you**), then briefly state the goal, what is done, what is active, and what is next.
+- **Bring consequential choices to them; never silently decide them.** Look up facts and handle routine details inside the agreed direction, but pause affected work for their call on user-facing behavior, shared contracts, persistent data, scope, meaningful architecture, or rollout risk (including the initial approach). Reuse explicit approvals already given, and ask when unsure whether a choice matters to them.
+- **Ask in decision space, not implementation detail.** Never surface after minutes of deep digging with a low-level technical question they lack context to answer. First bring them up to speed at their level, anchored to the original goal, then reframe the choice around the outcomes and practical tradeoffs they care about. Give viable options, your recommendation and why, and what their answer unlocks. Keep safe independent work moving while they decide.
 
-## Human decisions, design critique, and acceptance
+## Separate design critique from correctness review
 
-Assume the human missed your tool calls and worker chats. Orient them at kickoff, on meaningful changes, and at the next checkpoint in a long quiet stretch. State the agreed goal, what is done, what is active, what is next, and whether work is continuing, blocked, or waiting on a decision.
+- **Advisor (before recommending a consequential design):** Ask a fresh, read-only advisor to challenge your proposed approach while it can still change. Share the goal, constraints, and evidence access, and ask: *What can we reuse or remove? Is there a cheaper, easier, smaller, or better abstraction? What am I missing?* Ask for the strongest credible alternative and its tradeoffs.
+- **Correctness reviewer (after implementation):** For substantial or consequential changes, or whenever the human or repo requires independent review, use a fresh, read-only reviewer who neither built the change nor shaped the design. Have them verify the approved outcome against the exact integrated commits, builds, fixtures, and observed test evidence.
+- **Keep verification honest.** Never treat single-worker checks as integrated acceptance. After repeated failures, stop and separate product bugs, test bugs, and missing evidence before rerunning. If the approach or scope changes materially, reopen the affected human decision, advisor critique, and correctness review, not just the tests. If your host cannot run subagents or an independent reviewer, keep your own reads narrow and explicitly flag any review you could not run independently. Never self-approve.
 
-Verify facts independently without asking the human, using workers when helpful, and handle routine technical details within the agreed direction. Before committing affected work to any unresolved consequential choice, including the first one, get the human's explicit decision. That covers behavior, shared contracts, persistent data, scope, meaningful architecture, and rollout risk. Reuse approvals already given, and ask when unsure whether a choice matters. Share what surfaced, viable options and practical consequences, your recommendation, and what follows. Keep independent authorized work moving while affected work waits.
+## Improve the workflow as it runs and wrap up cleanly
 
-Before recommending a consequential design, ask a fresh, read-only **advisor** to challenge it. Share the goal, proposed path, constraints, and evidence access, and ask what can be reused or removed, whether a simpler, smaller, cheaper, or better-abstracted approach would work, and for the strongest credible alternative with its evidence and tradeoffs. Bring in a separate planner whenever consequential ambiguity arises and you need options mapped out.
+- **Run a periodic workflow-improvement review.** After the first substantial milestone (if work remains), at major phase boundaries, or after costly rework, run a fresh worker to examine how the task is going (lead context load, token usage, rework, friction). It can propose small, reversible tweaks to your task instructions (you decide whether to try them, note material changes to the human, and undo them if they don't help) or draft proposed edits to this skill for the human's approval without changing installed or published skills directly.
+- **Wrap up clearly.** When finishing, report what changed, what passed (with exact commits and logs), what remains unverified, and any open review gates.
 
-Keep design critique separate from acceptance. For substantial or consequential changes, and whenever the human or repository requires independent review, require a fresh, read-only **acceptance reviewer** who neither implemented the change nor shaped the design. Have them check the approved outcome against the exact integrated artifact and observed test evidence. If a required independent reviewer is unavailable on any host, even one that normally supports subagents, leave acceptance explicitly open rather than skipping or self-approving it.
-
-Bind acceptance to exact participating repository revisions and local changes, exact build, fixture, and configuration, and observed results, keeping per-repository or single-worker checks distinct from integrated acceptance. On drift, recheck affected claims and reuse valid unchanged evidence. After repeated failures, separate product defects, test defects, and missing evidence before rerunning.
-
-## Worker lifetime and checkpoints
-
-Start a fresh worker for each new problem, so new investigations and implementations start fresh by default. At natural checkpoints, continue the same worker on the same problem when retained live state, a hard-won diagnosis, or an active edit-and-test loop genuinely avoids rediscovery.
-
-When approved scope covers the fix and any required advisor critique and human decisions are settled, you may give the same investigator a new implementation brief if retained state is useful and this host can grant authorized write access and exclusive shared-resource ownership. If this host cannot change that investigator's permissions, hand off to a fresh implementer with authorized write scope and exclusive ownership, and if this host cannot grant anyone write access, stop and ask the human instead, keeping investigative access read-only until a change is authorized. Routine fixes already covered by approved scope do not need a new design review, and neither path may bypass required authorization. Use a fresh advisor for each new consequential design choice and continue it for follow-up questions on that choice. Start acceptance with a fresh acceptance reviewer, and let that reviewer verify a narrow fix it requested. If the approach or acceptance scope changes materially, reopen any affected human decision, design critique, or acceptance gate, not just the tests.
-
-Reconcile pending edits and transfer shared-resource ownership before replacing a worker. At pauses or handoffs, record a compact checkpoint covering the outcome, decisions, state and resource ownership, relevant revisions and artifacts, evidence pointers, open gaps, and next check so you can recover continuity without opening old chats. After a pause or drift, a resumed or replacement worker must verify relevant current state before relying on the checkpoint.
-
-## Improving the workflow
-
-Run a fresh **workflow-improvement worker** after the first substantial milestone if work remains, at later phase boundaries with fresh evidence, and after repeated costly rework, giving it the prior experiment, baseline, and evidence pointers. Have it inspect accessible, authorized traces, or checkpoints and artifacts when traces are withheld, and measure lead input, total usage, elapsed time, rework, and review cost separately when available, distinguishing measured numbers from proxies.
-
-If evidence supports a task-local trial, the worker writes at most one reversible adjustment in a candidate note outside the tracked checkout, recording the baseline, what would count as improvement, and when to roll it back. At the next checkpoint, you decide whether to try it on future assignments and make material changes visible in your next human update. Check the result at the next applicable checkpoint and roll it back if it fails or causes a regression, never relaxing scope, human decisions, or review gates.
-
-For recurring failures, the worker may draft a versioned skill patch in a disposable workspace. Testing against a frozen baseline and a separate regression case requires explicit human authorization for scope and budget plus an available authorized runner, either a worker runner or an equally authorized outside evaluator. If either authority or a runner is unavailable, launch no evaluation and return an untested proposal with the baseline, regression case, and blocker. Keep active, installed, and published skill copies untouched during tasks and tests. Durable skill changes go through normal review and ordinary promotion only after repeated trials support them.
-
-Read [`references/working-examples.md`](references/working-examples.md) when you want a starter prompt, a copyable worker brief with role hints, a compact checkpoint, or a short three-repo example.
+Read [`references/working-examples.md`](references/working-examples.md) for copyable worker briefs, before-and-after decision-space questions, bounded read examples, and an end-to-end multi-repo walkthrough.
